@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Study Planner</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', sans-serif;
+}
+
+body{
+color:white;
+}
+
+/* NAVBAR */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(0,0,0,0.8);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+nav a{
+margin:0 15px;
+color:white;
+text-decoration:none;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#00e5ff;
+}
+
+/* SECTION */
+
+section{
+display:none;
+min-height:100vh;
+padding:80px 20px;
+text-align:center;
+background-size:cover;
+background-position:center;
+}
+
+.active{
+display:block;
+}
+
+/* BACKGROUNDS */
+
+#home{
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b");
+}
+
+#planner{
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40");
+}
+
+#subjects{
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1516979187457-637abb4f9353");
+}
+
+#about{
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f");
+}
+
+#contact{
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1492724441997-5dc865305da7");
+}
+
+/* HOME IMAGE */
+
+.home-image{
+width:350px;
+margin-top:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+transition:0.4s;
+}
+
+.home-image:hover{
+transform:scale(1.05);
+}
+
+/* GLASS CARD */
+
+.card{
+width:420px;
+margin:auto;
+padding:30px;
+background:rgba(255,255,255,0.15);
+border-radius:15px;
+backdrop-filter:blur(10px);
+box-shadow:0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* INPUT */
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:none;
+border-radius:5px;
+}
+
+/* BUTTON */
+
+button{
+background:#00e5ff;
+border:none;
+padding:10px;
+width:100%;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#00bcd4;
+transform:scale(1.05);
+}
+
+/* TASK LIST */
+
+ul{
+margin-top:15px;
+padding:0;
+}
+
+li{
+list-style:none;
+background:white;
+color:black;
+margin:8px 0;
+padding:8px;
+border-radius:5px;
+display:flex;
+justify-content:space-between;
+}
+
+.delete{
+background:red;
+color:white;
+border:none;
+padding:4px 8px;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:20px;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+text-align:center;
+padding:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<i class="fa-solid fa-book-open"></i> Study Planner
+</div>
+
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('planner')">Planner</a>
+<a onclick="showPage('subjects')">Subjects</a>
+<a onclick="showPage('about')">About</a>
+<a onclick="showPage('contact')">Contact</a>
+</nav>
+
+</header>
+
+<!-- HOME -->
+
+<section id="home" class="active">
+
+<div class="hero">
+
+<h1>Smart Study Planner</h1>
+<p>Plan your studies and stay productive 📚</p>
+
+<img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6"
+class="home-image"
+alt="Study Planner Image">
+
+</div>
+
+</section>
+
+<!-- PLANNER -->
+
+<section id="planner">
+
+<div class="card">
+
+<h2>Add Study Task</h2>
+
+<input type="text" id="task" placeholder="Subject">
+
+<input type="time" id="time">
+
+<select id="priority">
+<option>High Priority</option>
+<option>Medium Priority</option>
+<option>Low Priority</option>
+</select>
+
+<button onclick="addTask()">Add Task</button>
+
+<ul id="taskList"></ul>
+
+</div>
+
+</section>
+
+<!-- SUBJECTS -->
+
+<section id="subjects">
+
+<div class="card">
+
+<h2>Subjects</h2>
+
+<ul>
+<li>Mathematics</li>
+<li>Computer Science</li>
+<li>Physics</li>
+<li>English</li>
+<li>Data Structures</li>
+</ul>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="card">
+
+<h2>About</h2>
+
+<p>
+Smart Study Planner helps students organize study schedules,
+manage subjects and improve productivity.
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="card">
+
+<h2>Contact Us</h2>
+
+<input type="text" placeholder="Name">
+
+<input type="email" placeholder="Email">
+
+<textarea placeholder="Message"></textarea>
+
+<button>Send Message</button>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 Smart Study Planner | Student Project</p>
+
+</footer>
+
+<script>
+
+function showPage(page){
+
+let sections=document.querySelectorAll("section")
+
+sections.forEach(section=>{
+section.classList.remove("active")
+})
+
+document.getElementById(page).classList.add("active")
+
+}
+
+/* ADD TASK */
+
+function addTask(){
+
+let task=document.getElementById("task").value
+let time=document.getElementById("time").value
+let priority=document.getElementById("priority").value
+
+if(task==""){
+alert("Enter subject")
+return
+}
+
+let li=document.createElement("li")
+
+li.innerHTML = task+" ("+priority+") "+time+
+'<button class="delete" onclick="deleteTask(this)">X</button>'
+
+document.getElementById("taskList").appendChild(li)
+
+}
+
+/* DELETE */
+
+function deleteTask(btn){
+
+btn.parentElement.remove()
+
+}
+
+</script>
+
+</body>
+</html>
